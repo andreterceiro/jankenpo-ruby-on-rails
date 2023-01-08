@@ -41,9 +41,8 @@
                     return;
                 }
 
-                $.get({
+                $.post({
                     url: "/game/play",
-                    type: "get",
                     data: {
                         option: userChoice
                     },

@@ -1,4 +1,6 @@
 class GameController < ApplicationController
+  skip_before_action :verify_authenticity_token
+  
   # GET /game/new
   def new
     
@@ -20,8 +22,8 @@ class GameController < ApplicationController
       "message": "winner: " + winner + " - computer option: " + computerOption
     }
   end
-
-  def getComputerOption
+  
+  private def getComputerOption
     integerComputerOption = rand(1..3)
 
     if integerComputerOption == 1
