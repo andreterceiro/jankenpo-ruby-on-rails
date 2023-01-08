@@ -1,0 +1,65 @@
+<html>
+    <head>
+        <title>Jankenpo</title>
+        <meta charset="utf-8">
+        <style>
+            .option {
+                border: 1px solid #000;
+                margin-left: 30px;
+                margin-top: 30px;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            Please click in your option:
+            <hr />
+            <form action="/game/play" method="post">
+                <span>
+                    <img src="<%= image_url("paper.png") %>" class="option" onclick="process('paper')" />
+                </span>
+                <span>
+                    <img src="<%= image_url("rock.png") %>" class="option" onclick="process('rock')" />
+                </span>
+                <span>
+                    <img src="<%= image_url("scissors.png") %>" class="option" onclick="process('scissors')" />
+                </span>
+            </form>
+        </div>
+        <script>
+            /**
+             * Alert who is the winner
+             * user GET parameter choice x computer random choice 
+             * 
+             * @param {string} userChoice The choice of the user
+             *
+             * @return {null}
+             */
+            function process(userChoice) {
+                if (userChoice != "paper" && userChoice != "rock" && userChoice != "scissors") {
+                    alert("Please select your choice.");
+                    return;
+                }
+
+                $.get({
+                    url: "/game/play",
+                    type: "get",
+                    data: {
+                        option: userChoice
+                    },
+                    success: function(data) {
+                        alert(data.message)
+                    },
+                    error: function() {
+                        alert("An error ocurred")
+                    }
+                })
+            }
+        </script>
+       
+       <script
+			src="https://code.jquery.com/jquery-1.12.4.min.js"
+			integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+			crossorigin="anonymous"></script>
+    </body>
+</html>
