@@ -1,7 +1,7 @@
 class GameController < ApplicationController
   skip_before_action :verify_authenticity_token
   
-  # GET /game/new
+  # GET /game/form
   def new
     
   end
